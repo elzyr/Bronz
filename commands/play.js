@@ -33,7 +33,7 @@ module.exports = {
                 message.channel.send('Wychodze, papa');
             });
  
-            await message.reply(`Teraz leci ***twój link***`)
+            await message.reply(`Teraz leci ***to gówno co wysłałeś***`)
  
             return
         }

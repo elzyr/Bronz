@@ -12,7 +12,9 @@ module.exports = {
             {name:'!mem', value:'podaje na tace randomowego mema z reddita'},
             {name:'!smem', value:'surrealistic mamamia'},
             {name:'!op (nick)', value:'daje link do op.gg danej osoby (dziala tylko eune w tym momencie)'},
-            {name:'!ping', value:'sprawdza czy bot dziala'}
+            {name:'!ping', value:'sprawdza czy bot dziala'},
+            {name:'!play', value:'puszcza muzyke (testuje dopiero)'},
+            {name:'!leave', value:'wychodzi z kanału'}
 
         )
         .setFooter("Bot zrobiony przez Elzyr#5675");

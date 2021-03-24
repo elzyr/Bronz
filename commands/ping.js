@@ -3,5 +3,6 @@ module.exports = {
     description: "this is a ping command!",
     execute(client, message, args, Discord){
         message.channel.send('przestań spamić :angry:');
+        console.log("bot po przebudowie dziala");
     }
 }

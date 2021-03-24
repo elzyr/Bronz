@@ -11,7 +11,7 @@ module.exports = {
             {name:'!help', value:'wyświetla to okienko'},
             {name:'!mem', value:'podaje na tace randomowego mema z reddita'},
             {name:'!smem', value:'surrealistic mamamia'},
-            {name:'!op (nick)', value:'daje link do op.gg danej osoby (dziala tylko eune w tym momencie'},
+            {name:'!op (nick)', value:'daje link do op.gg danej osoby (dziala tylko eune w tym momencie)'},
             {name:'!ping', value:'sprawdza czy bot dziala'}
 
         )

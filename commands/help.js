@@ -15,7 +15,7 @@ module.exports = {
             {name:'!ping', value:'sprawdza czy bot dziala'}
 
         )
-        .setFooter("jak bede umiał to dodam wiecej :)");
+        .setFooter("Bot zrobiony przez Elzyr#5675");
 
         message.channel.send(newEmbed);
     }

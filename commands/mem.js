@@ -2,6 +2,7 @@ const got = require('got');
 
 module.exports = {
     name: 'mem',
+    cooldown: 5,
     description: "dej mema",
     execute(client, message, args, Discord){
         message.channel.send('oto twój mem');

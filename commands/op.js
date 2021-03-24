@@ -1,5 +1,6 @@
 module.exports = {
     name: 'op',
+    cooldown: 5,
     description: "najprostrza komenda do przetestowania czy bot dziala",
     execute(message, args){
         var link = "https://eune.op.gg/summoner/userName=";

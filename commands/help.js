@@ -15,7 +15,6 @@ module.exports = {
             {name:'!ping', value:'sprawdza czy bot dziala'}
 
         )
-        .addImage('https://1.bp.blogspot.com/-cwQgpDJB2EA/XVM-C-bf_MI/AAAAAAABXJk/OL8xVgYQwcsln6Xf5ZQdYjHhjRBrLetKwCLcBGAs/s1600/4284.jpg')
         .setFooter("jak bede umiał to dodam wiecej :)");
 
         message.channel.send(newEmbed);

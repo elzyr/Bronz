@@ -12,9 +12,9 @@ client.events = new Discord.Collection();
 
 client.once('ready', () =>{
     client.user.setPresence({
-        status: "idle",  // You can show online, idle... Do not disturb is dnd
+        status: "online",  // You can show online, idle... Do not disturb is dnd
         activity: {
-            name: "naprawiłem", 
+            name: "!play już działa", 
             type: "WATCHING" // PLAYING, WATCHING, LISTENING, STREAMING,
         }
     });

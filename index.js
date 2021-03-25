@@ -13,9 +13,9 @@ client.events = new Discord.Collection();
 
 client.once('ready', () =>{
     client.user.setPresence({
-        status: "online",  // You can show online, idle... Do not disturb is dnd
+        status: "dnd",  // You can show online, idle... Do not disturb is dnd
         activity: {
-            name: "!play już działa", 
+            name: "DODAŁEM QUEUE POGCHAMP", 
             type: "WATCHING" // PLAYING, WATCHING, LISTENING, STREAMING,
         }
     });

@@ -15,12 +15,13 @@ client.once('ready', () =>{
     client.user.setPresence({
         status: "dnd",  // You can show online, idle... Do not disturb is dnd
         activity: {
-            name: "DODAŁEM QUEUE POGCHAMP", 
+            name: "DODAŁEM QUEUE POGCHAMP",
             type: "WATCHING" // PLAYING, WATCHING, LISTENING, STREAMING,
         }
     });
 });
 
 
-
 client.login(process.env.DISCORD_TOKEN);
+
+

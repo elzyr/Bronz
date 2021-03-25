@@ -2,9 +2,10 @@ const got = require('got');
 
 module.exports = {
     name: 'mem',
+    aliases: ['meme', 'memes'],
     cooldown: 5,
     description: "dej mema",
-    execute(client, message, args, Discord){
+    execute(message, args, cmd, client, Discord){
         message.channel.send('oto twój mem');
         const embed = new Discord.MessageEmbed()
         got('https://www.reddit.com/r/memes/random/.json').then(response => {

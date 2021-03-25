@@ -2,7 +2,7 @@ module.exports = {
     name: 'help',
     cooldown: 5,
     description: "wyświetla wszystkie komendy",
-    execute(client, message, args, Discord){
+    execute(message, args, cmd, client, Discord){
         const newEmbed = new Discord.MessageEmbed()
         .setColor('#304281')
         .setTitle("Komendy")

@@ -11,27 +11,8 @@ module.exports = (Discord, client, message) => {
     const command = client.commands.get(cmd) || 
     client.commands.find(a => a.aliases && a.aliases.includes(cmd));
 
-    if(command) command.execute(client, message, args, Discord);
+    if(command) command.execute(message, args, cmd, client, Discord);
 
-    if(!cooldowns.has(command.name)){
-        cooldowns.set(command.name, new Discord.Collection());
-    }
 
-    const current_time = Date.now();
-    const time_stamps = cooldowns.get(command.name);
-    const cooldown_amount = (command.cooldown) * 1000;
-
-    if(time_stamps.has(message.author.id)){
-        const expiration_time = time_stamps.get(message.author.id) + cooldown_amount;
-
-        if(current_time < expiration_time){
-            const time_left = (expiration_time - current_time) / 1000;
-
-            return message.reply(` musisz poczekac ${time_left.toFixed(1)} aby znowu użyć komendy !${command.name}`);
-        }
-    }
-    time_stamps.set(message.author.id, current_time);
-    //Delete the user's id once the cooldown is over.
-    setTimeout(() => time_stamps.delete(message.author.id), cooldown_amount);
 
 }

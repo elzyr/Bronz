@@ -1,6 +1,7 @@
 module.exports = {
     name: 'help',
     cooldown: 5,
+    aliases: ['commands', 'komendy'],
     description: "wyświetla wszystkie komendy",
     execute(message, args, cmd, client, Discord){
         const newEmbed = new Discord.MessageEmbed()
@@ -15,7 +16,9 @@ module.exports = {
             {name:'!op (nick)', value:'daje link do op.gg danej osoby (dziala tylko eune w tym momencie)'},
             {name:'!ping', value:'sprawdza czy bot dziala'},
             {name:'!play', value:'puszcza muzyke (testuje dopiero)'},
-            {name:'!leave', value:'wychodzi z kanału'}
+            {name:'!leave', value:'wychodzi z kanału'},
+            {name:'!skip', value:'skipuje aktualna piosenke'}
+
 
         )
         .setFooter("Bot zrobiony przez Elzyr#5675");

@@ -110,7 +110,13 @@ const skip_song = (message, server_queue) => {
 
 const stop_song = (message, server_queue) => {
     if (!message.member.voice.channel) return message.channel.send('musisz być na kanale, żeby używać');
+    if (!server_queue){
+        return message.channel.send('nie mam czego stopowac');
+    }
+
     server_queue.songs = [];
+    
+
     server_queue.connection.dispatcher.end();
 }
 

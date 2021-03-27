@@ -16,8 +16,10 @@ module.exports = {
             {name:'!op (nick)', value:'daje link do op.gg danej osoby (dziala tylko eune w tym momencie)'},
             {name:'!ping', value:'sprawdza czy bot dziala'},
             {name:'!play', value:'puszcza muzyke (testuje dopiero)'},
-            {name:'!leave', value:'wychodzi z kanału'},
-            {name:'!skip', value:'skipuje aktualna piosenke'}
+            {name:'!stop', value:'wychodzi z kanału'},
+            {name:'!skip', value:'skipuje aktualna piosenke'},
+            {name:'!volume', value:'zmienia glośność'}
+
 
 
         )

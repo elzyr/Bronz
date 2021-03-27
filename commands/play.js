@@ -6,7 +6,7 @@ const queue = new Map();
 
 module.exports = {
     name: 'play',
-    aliases: ['skip', 'stop',], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
+    aliases: ['skip', 'stop','volume'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
     cooldown: 0,
     description: 'Advanced music bot',
     async execute(message,args, cmd, client, Discord){
@@ -78,6 +78,8 @@ module.exports = {
 
         else if(cmd === 'skip') skip_song(message, server_queue);
         else if(cmd === 'stop') stop_song(message, server_queue);
+        else if(cmd === 'volume') set_volume(message,args,server_queue);
+
     }
     
 }
@@ -92,7 +94,8 @@ const video_player = async (guild, song) => {
         return;
     }
     const stream = ytdl(song.url, { filter: 'audioonly' });
-    song_queue.connection.play(stream, { seek: 0, volume: 0.5 })
+    default_volume = 1;
+    song_queue.connection.play(stream, { seek: 0, volume: (process.env.VOLUME) })
     .on('finish', () => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0]);
@@ -120,3 +123,17 @@ const stop_song = (message, server_queue) => {
     server_queue.connection.dispatcher.end();
 }
 
+const set_volume = async (message,args,server_queue) => {
+    default_volume = args[0];
+;
+    if (!args.length) return message.channel.send('Ale na ile mam dać dzwięk pacanie?');
+    if (Number.isNaN(+default_volume)) return message.channel.send('liczba pacanie');
+    if (args[0]>100) return message.channel.send('nie ma sensu dawac wiecej niz 100, jedyne co to daje to przester, glosnosc ta sama');
+    if (!message.member.voice.channel) return message.channel.send('Musisz być na kanale!');
+    if (args[0]<0) return message.channel.send('co :thinking:');
+
+    process.env.VOLUME = args[0] / 100;
+    server_queue.connection.dispatcher.setVolume(process.env.VOLUME);
+    return message.channel.send(`Ustawiłem dzwiek na ${args[0]}%`);
+
+}

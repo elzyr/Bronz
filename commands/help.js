@@ -1,6 +1,6 @@
 module.exports = {
     name: 'help',
-    cooldown: 5,
+    cooldown: 1,
     aliases: ['commands', 'komendy'],
     description: "wyświetla wszystkie komendy",
     execute(message, args, cmd, client, Discord){

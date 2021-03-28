@@ -1,6 +1,6 @@
 module.exports = {
     name: 'build',
-    cooldown: 5,
+    cooldown: 1,
     description: "this is a ping command!",
     execute(message, args, cmd, client, Discord){
         if(!args[0]) return message.channel.send('nie podałeś dla kogo builda potrzebujesz! aktualnie jest build do: ');

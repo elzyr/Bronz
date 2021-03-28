@@ -1,6 +1,6 @@
 module.exports = {
     name: 'op',
-    cooldown: 5,
+    cooldown: 1,
     aliases: ['opgg', 'gg'],
     description: "najprostrza komenda do przetestowania czy bot dziala",
     execute(message, args, cmd, client, Discord){

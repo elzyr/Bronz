@@ -3,7 +3,7 @@ const got = require('got');
 module.exports = {
     name: 'smem',
     aliases: ['smeme', 'smemes'],
-    cooldown: 5,
+    cooldown: 1,
     description: "dej mema",
     execute(message, args, cmd, client, Discord){
         message.channel.send('oto twój mem');

@@ -125,8 +125,9 @@ const stop_song = (message, server_queue) => {
 
 const set_volume = async (message,args,server_queue) => {
     default_volume = args[0];
+    display_volume = process.env.VOLUME * 100;
 ;
-    if (!args.length) return message.channel.send('Ale na ile mam dać dzwięk pacanie?');
+    if (!args.length) return message.channel.send('aktualnie głośność wynosi ' + display_volume + '%');
     if (Number.isNaN(+default_volume)) return message.channel.send('liczba pacanie');
     if (args[0]>100) return message.channel.send('nie ma sensu dawac wiecej niz 100, jedyne co to daje to przester, glosnosc ta sama');
     if (!message.member.voice.channel) return message.channel.send('Musisz być na kanale!');
@@ -134,6 +135,6 @@ const set_volume = async (message,args,server_queue) => {
 
     process.env.VOLUME = args[0] / 100;
     server_queue.connection.dispatcher.setVolume(process.env.VOLUME);
-    return message.channel.send(`Ustawiłem dzwiek na ${args[0]}%`);
+    return message.channel.send(`Ustawiłem głośność na ${args[0]}%`);
 
 }

@@ -3,6 +3,7 @@ const got = require('got');
 module.exports = {
     name: 'mem',
     aliases: ['meme', 'memes'],
+    permissions: [],
     cooldown: 1,
     description: "dej mema",
     execute(message, args, cmd, client, Discord){

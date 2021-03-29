@@ -2,6 +2,7 @@ module.exports = {
     name: 'help',
     cooldown: 1,
     aliases: ['commands', 'komendy'],
+    permissions: [],
     description: "wyświetla wszystkie komendy",
     execute(message, args, cmd, client, Discord){
         const newEmbed = new Discord.MessageEmbed()

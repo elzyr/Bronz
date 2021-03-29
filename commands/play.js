@@ -8,6 +8,7 @@ module.exports = {
     name: 'play',
     aliases: ['skip', 'stop','volume'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
     cooldown: 1,
+    permissions: [],
     description: 'Advanced music bot',
     async execute(message,args, cmd, client, Discord){
 

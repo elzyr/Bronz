@@ -4,6 +4,7 @@ module.exports = {
     name: 'smem',
     aliases: ['smeme', 'smemes'],
     cooldown: 1,
+    permissions: [],
     description: "dej mema",
     execute(message, args, cmd, client, Discord){
         message.channel.send('oto twój mem');

@@ -15,7 +15,7 @@ client.once('ready', () =>{
     client.user.setPresence({
         status: "dnd",  // You can show online, idle... Do not disturb is dnd
         activity: {
-            name: "DODAŁEM QUEUE POGCHAMP",
+            name: "ehh",
             type: "WATCHING" // PLAYING, WATCHING, LISTENING, STREAMING,
         }
     });

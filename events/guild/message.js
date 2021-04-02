@@ -10,6 +10,14 @@ module.exports = (Discord, client, message) => {
 
     const command = client.commands.get(cmd) || 
                     client.commands.find(a => a.aliases && a.aliases.includes(cmd));
+                    
+    try{
+      command.execute(message,args,cmd,client,Discord);
+    } catch (err){
+      message.reply(':x: błąd/nie ma takiej komendy');
+      console.log(err);
+      console.log('BŁĄD');
+   }
 
                     const validPermissions = [
                         "CREATE_INSTANT_INVITE",
@@ -44,21 +52,24 @@ module.exports = (Discord, client, message) => {
                         "MANAGE_WEBHOOKS",
                         "MANAGE_EMOJIS",
                       ]
+
                     
-  if(command.permissions.length){
-    let invalidPerms = []
-    for(const perm of command.permissions){
-      if(!validPermissions.includes(perm)){
-        return console.log(`Invalid Permissions ${perm}`);
+                    
+    if(command.permissions.length){
+      let invalidPerms = []
+      for(const perm of command.permissions){
+        if(!validPermissions.includes(perm)){
+          return console.log(`Invalid Permissions ${perm}`);
+        }
+        if(!message.member.hasPermission(perm)){
+          invalidPerms.push(perm);
+        }
       }
-      if(!message.member.hasPermission(perm)){
-        invalidPerms.push(perm);
-      }
+      if (invalidPerms.length){
+        return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
+      } 
+      
     }
-    if (invalidPerms.length){
-      return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
-    }
-  }
 
                     
     if(!cooldowns.has(command.name)){
@@ -83,12 +94,6 @@ module.exports = (Discord, client, message) => {
     time_stamps.set(message.author.id, current_time);
     setTimeout(() => time_stamps.delete(message.author.id), cooldown_amount);
 
-    try{
-        command.execute(message,args,cmd,client,Discord);
-    } catch (err){
-        message.reply(':x: błąd/nie ma takiej komendy');
-        console.log(err);
-    }
 
 
 

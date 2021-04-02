@@ -6,7 +6,7 @@ const queue = new Map();
 
 module.exports = {
     name: 'play',
-    aliases: ['skip', 'stop','volume'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
+    aliases: ['skip', 'stop','volume', 'queue'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
     cooldown: 1,
     permissions: [],
     description: 'Advanced music bot',
@@ -80,6 +80,9 @@ module.exports = {
         else if(cmd === 'skip') skip_song(message, server_queue);
         else if(cmd === 'stop') stop_song(message, server_queue);
         else if(cmd === 'volume') set_volume(message,args,server_queue);
+        else if(cmd === 'queue') show_queue(message,args,server_queue);
+
+        
 
     }
     
@@ -126,15 +129,33 @@ const stop_song = (message, server_queue) => {
 
 const set_volume = async (message,args,server_queue) => {
     default_volume = args[0];
-;
+    const member = message.guild.member(message.author);
+
+    if(!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) {
+        return message.channel.send(":x: tylko osoba Grande Bronze  :x:") 
+      }
+      
     if (!args.length) return message.channel.send('aktualnie głośność wynosi ' + process.env.VOLUME *100 + '%');
     if (Number.isNaN(+default_volume)) return message.channel.send('liczba pacanie');
     if (args[0]>100) return message.channel.send('nie ma sensu dawac wiecej niz 100, jedyne co to daje to przester, glosnosc ta sama');
     if (!message.member.voice.channel) return message.channel.send('Musisz być na kanale!');
     if (args[0]<0) return message.channel.send('co :thinking:');
+      
 
     process.env.VOLUME = args[0] / 100;
     server_queue.connection.dispatcher.setVolume(process.env.VOLUME);
     return message.channel.send(`Ustawiłem głośność na ${args[0]}%`);
 
 }
+
+const show_queue = (client, message, args, config, queue) => {
+    const serverQueue = queue.get(message.guild.id)
+    if (!serverQueue || serverQueue.songs.length == 0) return message.channel.send("❌ Tnic nie gra")
+    if (serverQueue.songs.length == 1) return message.channel.send("❌ pusto")
+  
+    return message.channel.send([
+      "__**queue:**__",
+      serverQueue.songs.slice(1).map(song => `- ${song.title}`).join("\n"),
+      `**tera leci:** ${serverQueue.songs[0].title}`
+    ].join("\n\n"))
+  }

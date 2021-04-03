@@ -1,12 +1,13 @@
 const ytdl = require('ytdl-core');
 const ytSearch = require('yt-search');
+const { VoiceChannel } = require('discord.js');
 
 //Global queue for your bot. Every server will have a key and value pair in this map. { guild.id, queue_constructor{} }
 const queue = new Map();
 
 module.exports = {
     name: 'play',
-    aliases: ['skip', 'stop'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
+    aliases: ['skip', 'stop', 'volume'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
     cooldown: 0,
     permissions: [],
     description: 'Advanced music bot',
@@ -79,6 +80,7 @@ module.exports = {
 
         else if(cmd === 'skip') skip_song(message, server_queue);
         else if(cmd === 'stop') stop_song(message, server_queue);
+        else if(cmd === 'volume') set_volume(message,server_queue,args, cmd, client, Discord);
     }
     
 }
@@ -93,7 +95,7 @@ const video_player = async (guild, song) => {
         return;
     }
     const stream = ytdl(song.url, { filter: 'audioonly' });
-    song_queue.connection.play(stream, { seek: 0, volume: 0.5 })
+    song_queue.connection.play(stream, { seek: 0, volume: process.env.VOLUME })
     .on('finish', () => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0]);
@@ -104,7 +106,7 @@ const video_player = async (guild, song) => {
 const skip_song = (message, server_queue) => {
     if (!message.member.voice.channel) return message.channel.send('M');
     if(!server_queue){
-        return message.channel.send(`There are no songs in queue 😔`);
+        return message.channel.send(`nic nie ma w que 😔`);
     }
     server_queue.connection.dispatcher.end();
 }
@@ -115,9 +117,8 @@ const stop_song = (message, server_queue) => {
     server_queue.connection.dispatcher.end();
 }
 
-const set_volume = async (message,args,server_queue) => {
-    default_volume = args[0];
-    const member = message.guild.member(message.author);
+const set_volume = async (message,server_queue,args, cmd, client, Discord) => {
+    default_volume = process.env.VOLUME;
 
     if(!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) {
         return message.channel.send(":x: tylko osoba Grande Bronze może to zrobić :x:") 

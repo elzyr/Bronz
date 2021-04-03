@@ -7,16 +7,10 @@ module.exports = (Discord, client, message) => {
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
-    
     const cmd = args.shift().toLowerCase();
-    
-    if(!cmd ){
-      return message.channel.send('błąd');
-    }
 
-    const command =
-      client.commands.get(cmd.toLowerCase()) ||
-      client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
+    const command = client.commands.get(cmd) || 
+                    client.commands.find(a => a.aliases && a.aliases.includes(cmd));
 
                     const validPermissions = [
                       "CREATE_INSTANT_INVITE",
@@ -56,14 +50,14 @@ module.exports = (Discord, client, message) => {
                       let invalidPerms = []
                       for(const perm of command.permissions){
                         if(!validPermissions.includes(perm)){
-                          return console.log(`brak permisji ${perm}`);
+                          return console.log(`Invalid Permissions ${perm}`);
                         }
                         if(!message.member.hasPermission(perm)){
                           invalidPerms.push(perm);
                         }
                       }
                       if (invalidPerms.length){
-                        return message.channel.send(`błąd \`${invalidPerms}\``);
+                        return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
                       }
                     }
 
@@ -84,7 +78,7 @@ module.exports = (Discord, client, message) => {
         if(current_time < expiration_time){
             const time_left = (expiration_time - current_time) / 1000;
 
-            return message.reply(`poczekaj ${time_left.toFixed(1)} przed użyciem ${command.name}`);
+            return message.reply(`poczekaj ${time_left.toFixed(1)} przed uzyciem ${command.name}`);
         }
     }
 
@@ -96,7 +90,7 @@ module.exports = (Discord, client, message) => {
     try{
         command.execute(message,args, cmd, client, Discord);
     } catch (err){
-        message.reply("błąd");
+        message.reply("There was an error trying to execute this command!");
         console.log(err);
     }
 

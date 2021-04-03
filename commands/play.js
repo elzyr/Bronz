@@ -1,6 +1,6 @@
 const ytdl = require('ytdl-core');
 const ytSearch = require('yt-search');
-const { VoiceChannel } = require('discord.js');
+const { VoiceChannel, VoiceConnection } = require('discord.js');
 
 //Global queue for your bot. Every server will have a key and value pair in this map. { guild.id, queue_constructor{} }
 const queue = new Map();
@@ -118,22 +118,19 @@ const stop_song = (message, server_queue) => {
 }
 
 const set_volume = async (message,server_queue,args, cmd, client, Discord) => {
-    default_volume = process.env.VOLUME;
 
     if(!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) {
         return message.channel.send(":x: tylko osoba Grande Bronze może to zrobić :x:") 
       }
       
     if (!args.length) return message.channel.send('aktualnie głośność wynosi ' + process.env.VOLUME *100 + '%');
-    if (Number.isNaN(+default_volume)) return message.channel.send('liczba pacanie');
-    if (args[0]>100) return message.channel.send('nie ma sensu dawac wiecej niz 100, jedyne co to daje to przester, glosnosc ta sama');
+    if (Number.isNaN(+args[0])) return message.channel.send(':x: to musi być liczba :x:');
+    if (!server_queue) return message.channel.send('`nie mozna zmieniac glosnosci jesli bot nie gra bo crashuje`');
+    if (args[0]>100 || args[0]<0) return message.channel.send('poprostu nie.');
     if (!message.member.voice.channel) return message.channel.send('Musisz być na kanale!');
-    if (args[0]<0) return message.channel.send('co :thinking:');
-      
+
 
     process.env.VOLUME = args[0] / 100;
     server_queue.connection.dispatcher.setVolume(process.env.VOLUME);
     return message.channel.send(`Ustawiłem głośność na ${args[0]}%`);
-
 }
-

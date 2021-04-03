@@ -6,8 +6,8 @@ const queue = new Map();
 
 module.exports = {
     name: 'play',
-    aliases: ['skip', 'stop','volume', 'queue'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
-    cooldown: 1,
+    aliases: ['skip', 'stop'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
+    cooldown: 0,
     permissions: [],
     description: 'Advanced music bot',
     async execute(message,args, cmd, client, Discord){
@@ -15,17 +15,17 @@ module.exports = {
 
         //Checking for the voicechannel and permissions (you can add more permissions if you like).
         const voice_channel = message.member.voice.channel;
-        if (!voice_channel) return message.channel.send('Musisz być na kanale!');
+        if (!voice_channel) return message.channel.send(':x: Musisz być na kanale, żeby korzystać z bota! :x:');
         const permissions = voice_channel.permissionsFor(message.client.user);
-        if (!permissions.has('CONNECT')) return message.channel.send('Nie masz/mam odpowiednich permisji');
-        if (!permissions.has('SPEAK')) return message.channel.send('Nie masz/mam odpowiednich permisji');
+        if (!permissions.has('CONNECT')) return message.channel.send('Brak permisji');
+        if (!permissions.has('SPEAK')) return message.channel.send(':x: Brak permisji :x:');
 
         //This is our server queue. We are getting this server queue from the global queue.
         const server_queue = queue.get(message.guild.id);
 
         //If the user has used the play command
         if (cmd === 'play'){
-            if (!args.length) return message.channel.send('Nie napisałeś co grać :thinking:');
+            if (!args.length) return message.channel.send(':x: nie napisałeś co grać :x:');
             let song = {};
 
             //If the first argument is a link. Set the song object to have two keys. Title and URl.
@@ -43,7 +43,7 @@ module.exports = {
                 if (video){
                     song = { title: video.title, url: video.url }
                 } else {
-                     message.channel.send('nie znalazłem filmu.');
+                     message.channel.send(':x: nie znalazłem piosenki :x:');
                 }
             }
 
@@ -68,22 +68,17 @@ module.exports = {
                     video_player(message.guild, queue_constructor.songs[0]);
                 } catch (err) {
                     queue.delete(message.guild.id);
-                    message.channel.send('błąd podczas łączenia');
+                    message.channel.send(':x: błąd podczas łączenia :x:');
                     throw err;
                 }
             } else{
                 server_queue.songs.push(song);
-                return message.channel.send(`👍 dodałem **${song.title}** do kolejki`);
+                return message.channel.send(`👍 dodałem  **${song.title}** do kolejki`);
             }
         }
 
         else if(cmd === 'skip') skip_song(message, server_queue);
         else if(cmd === 'stop') stop_song(message, server_queue);
-        else if(cmd === 'volume') set_volume(message,args,server_queue);
-        else if(cmd === 'queue') show_queue(message,args,server_queue);
-
-        
-
     }
     
 }
@@ -98,8 +93,7 @@ const video_player = async (guild, song) => {
         return;
     }
     const stream = ytdl(song.url, { filter: 'audioonly' });
-    default_volume = 1;
-    song_queue.connection.play(stream, { seek: 0, volume: (process.env.VOLUME) })
+    song_queue.connection.play(stream, { seek: 0, volume: 0.5 })
     .on('finish', () => {
         song_queue.songs.shift();
         video_player(guild, song_queue.songs[0]);
@@ -108,22 +102,16 @@ const video_player = async (guild, song) => {
 }
 
 const skip_song = (message, server_queue) => {
-    if (!message.member.voice.channel) return message.channel.send('Musisz być na kanale, żeby używać komend');
+    if (!message.member.voice.channel) return message.channel.send('M');
     if(!server_queue){
-        return message.channel.send(`nie ma nic w kolejce 😔`);
+        return message.channel.send(`There are no songs in queue 😔`);
     }
     server_queue.connection.dispatcher.end();
 }
 
 const stop_song = (message, server_queue) => {
-    if (!message.member.voice.channel) return message.channel.send('musisz być na kanale, żeby używać');
-    if (!server_queue){
-        return message.channel.send('nie mam czego stopowac');
-    }
-
+    if (!message.member.voice.channel) return message.channel.send(':x: Musisz być na kanale, żeby korzystać z bota! :x:');
     server_queue.songs = [];
-    
-
     server_queue.connection.dispatcher.end();
 }
 
@@ -132,7 +120,7 @@ const set_volume = async (message,args,server_queue) => {
     const member = message.guild.member(message.author);
 
     if(!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) {
-        return message.channel.send(":x: tylko osoba Grande Bronze  :x:") 
+        return message.channel.send(":x: tylko osoba Grande Bronze może to zrobić :x:") 
       }
       
     if (!args.length) return message.channel.send('aktualnie głośność wynosi ' + process.env.VOLUME *100 + '%');
@@ -148,14 +136,3 @@ const set_volume = async (message,args,server_queue) => {
 
 }
 
-const show_queue = (client, message, args, config, queue) => {
-    const serverQueue = queue.get(message.guild.id)
-    if (!serverQueue || serverQueue.songs.length == 0) return message.channel.send("❌ Tnic nie gra")
-    if (serverQueue.songs.length == 1) return message.channel.send("❌ pusto")
-  
-    return message.channel.send([
-      "__**queue:**__",
-      serverQueue.songs.slice(1).map(song => `- ${song.title}`).join("\n"),
-      `**tera leci:** ${serverQueue.songs[0].title}`
-    ].join("\n\n"))
-  }

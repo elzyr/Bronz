@@ -7,10 +7,16 @@ module.exports = (Discord, client, message) => {
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
+    
     const cmd = args.shift().toLowerCase();
+    
+    if(!cmd ){
+      return message.channel.send('błąd');
+    }
 
-    const command = client.commands.get(cmd) || 
-                    client.commands.find(a => a.aliases && a.aliases.includes(cmd));
+    const command =
+      client.commands.get(cmd.toLowerCase()) ||
+      client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
 
                     const validPermissions = [
                       "CREATE_INSTANT_INVITE",

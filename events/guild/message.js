@@ -87,11 +87,11 @@ module.exports = (Discord, client, message) => {
     //Delete the user's id once the cooldown is over.
     setTimeout(() => time_stamps.delete(message.author.id), cooldown_amount);
 
-    try {
-      command.execute(message, args);
-    } catch (error) {
-      console.error(error);
-      message.reply('błąd');
-    }
+    try{
+      command.execute(message,args, cmd, client, Discord);
+  } catch (err){
+      message.reply("There was an error trying to execute this command!");
+      console.log(err);
+  }
 
 }

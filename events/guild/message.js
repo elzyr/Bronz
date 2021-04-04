@@ -44,7 +44,7 @@ module.exports = (Discord, client, message) => {
                       "MANAGE_ROLES",
                       "MANAGE_WEBHOOKS",
                       "MANAGE_EMOJIS",
-                    ]
+                    ];
                   
                     if(command.permissions.length){
                       let invalidPerms = []
@@ -86,12 +86,11 @@ module.exports = (Discord, client, message) => {
     time_stamps.set(message.author.id, current_time);
     //Delete the user's id once the cooldown is over.
     setTimeout(() => time_stamps.delete(message.author.id), cooldown_amount);
-
     try{
       command.execute(message,args, cmd, client, Discord);
   } catch (err){
-      message.reply("There was an error trying to execute this command!");
+      message.reply("błąd");
       console.log(err);
-  }
+  };
 
 }

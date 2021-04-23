@@ -23,7 +23,7 @@ module.exports = {
 
 
         )
-        .setFooter("Bot zrobiony przez Elzyr#5675");
+        .setFooter("Bot zrobiony przeze mnie iksde");
 
         message.channel.send(newEmbed);
     }

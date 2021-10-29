@@ -11,19 +11,19 @@ module.exports = {
         .setDescription('Takie komendy są w tym momencie')
         .addFields(
 
-            {name:'!help', value:'wyświetla to okienko'},
+            {name:'!help', value:'Wyświetla wszystkie komendy'},
             {name:'!mem', value:'podaje na tace randomowego mema z reddita'},
             {name:'!smem', value:'surrealistic mamamia'},
             {name:'!op (nick)', value:'daje link do op.gg danej osoby (dziala tylko eune w tym momencie)'},
             {name:'!play', value:'puszcza muzyke (zbugowane)'},
             {name:'!stop', value:'kickuje bota z kanału'},
             {name:'!skip', value:'skipuje aktualna piosenke'},
-            {name:'!volume', value:'zmienia glośność'}
+            {name:'!volume', value:'zmienia glośność **trzeba '}
 
 
 
         )
-        .setFooter("Bot zrobiony przeze mnie iksde");
+        .setFooter("Bot zrobiony przez Elzyr#0001");
 
         message.channel.send(newEmbed);
     }

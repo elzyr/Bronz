@@ -4,7 +4,7 @@ module.exports = {
     permissions: ["ADMINISTRATOR",],
     description: "this is a ping command!",
     execute(message, args, cmd, client, Discord){
-        message.channel.send('wersja 0.4.5 bot crashuje kiedy nie rozumie komendy');
+        message.channel.send('wersja 0.5 bot działa (chyba)');
         console.log("ping command has been used");
     }
 }

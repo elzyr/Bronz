@@ -1,3 +1,5 @@
+const { permissions } = require('../../commands/ping');
+
 require('dotenv').config();
 //create cooldowns map
 const cooldowns = new Map();
@@ -44,8 +46,11 @@ module.exports = (Discord, client, message) => {
                       "MANAGE_ROLES",
                       "MANAGE_WEBHOOKS",
                       "MANAGE_EMOJIS",
-                    ];
-                  
+                    ]
+                    
+                    if(!command) {
+                      return message.channel.send("nie ma takiej komendy!");
+                    }
                     if(command.permissions.length){
                       let invalidPerms = []
                       for(const perm of command.permissions){
@@ -60,6 +65,8 @@ module.exports = (Discord, client, message) => {
                         return message.channel.send(`Missing Permissions: \`${invalidPerms}\``);
                       }
                     }
+                    
+
 
 
     //If cooldowns map doesn't have a command.name key then create one.

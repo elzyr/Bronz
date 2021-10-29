@@ -17,6 +17,8 @@ module.exports = {
             {name:'!op (nick)', value:'daje link do op.gg danej osoby (dziala tylko eune w tym momencie)'},
             {name:'!play', value:'puszcza muzyke'},
             {name:'!skip', value:'skipuje aktualna piosenke'},
+            {name:'!stop', value:'wyrzuca bota z kanału'},
+            {name:'!queue', value:'pokazuje kolejke'},
             {name:'!volume', value:'zmienia glośność (trzeba być Grande Bronze)'}
 
 

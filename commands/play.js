@@ -7,7 +7,7 @@ const queue = new Map();
 
 module.exports = {
     name: 'play',
-    aliases: ['skip', 'stop', 'volume'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
+    aliases: ['skip', 'stop', 'volume', 'queue'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
     cooldown: 0,
     permissions: [],
     description: 'Advanced music bot',
@@ -79,6 +79,7 @@ module.exports = {
         }
 
         else if(cmd === 'skip') skip_song(message, server_queue);
+        else if(cmd === 'queue') show_queue(message,server_queue,args, cmd, client, Discord);
         else if(cmd === 'stop') stop_song(message, server_queue);
         else if(cmd === 'volume') set_volume(message,server_queue,args, cmd, client, Discord);
     }
@@ -113,8 +114,13 @@ const skip_song = (message, server_queue) => {
 
 const stop_song = (message, server_queue) => {
     if (!message.member.voice.channel) return message.channel.send(':x: Musisz być na kanale, żeby korzystać z bota! :x:');
-    server_queue.songs = [];
-    server_queue.connection.dispatcher.end();
+    if(!server_queue){
+        return message.channel.send('w tym momencie nic nie leci!');
+    }else{
+        server_queue.songs = [];
+        server_queue.connection.dispatcher.end();
+    }
+
 }
 
 const set_volume = async (message,server_queue,args, cmd, client, Discord) => {
@@ -134,3 +140,14 @@ const set_volume = async (message,server_queue,args, cmd, client, Discord) => {
     server_queue.connection.dispatcher.setVolume(process.env.VOLUME);
     return message.channel.send(`Ustawiłem głośność na ${args[0]}%`);
 }
+
+const show_queue = (message,server_queue,args, cmd, client, Discord) => {
+    const serverQueue = queue.get(message.guild.id);
+    if (!serverQueue || serverQueue.songs.length == 0) return message.channel.send("nic nie gra")
+    if (serverQueue.songs.length == 1) return message.channel.send("nic nie ma w queue")
+    return message.channel.send([
+        "__**queue:**__",
+        serverQueue.songs.slice(1).map(song => `- ${song.title}`).join("\n")
+      ].join("\n\n"));
+    }
+

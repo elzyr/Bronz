@@ -15,10 +15,10 @@ module.exports = {
             {name:'!mem', value:'podaje na tace randomowego mema z reddita'},
             {name:'!smem', value:'surrealistic mamamia'},
             {name:'!op (nick)', value:'daje link do op.gg danej osoby (dziala tylko eune w tym momencie)'},
-            {name:'!play', value:'puszcza muzyke (zbugowane)'},
+            {name:'!play', value:'puszcza muzyke (przez to, że bot stoi na darmowym hostingu bot może lagować, ablo się bugować)'},
             {name:'!stop', value:'kickuje bota z kanału'},
             {name:'!skip', value:'skipuje aktualna piosenke'},
-            {name:'!volume', value:'zmienia glośność **trzeba '}
+            {name:'!volume', value:'zmienia glośność (trzeba być Grande Bronze)'}
 
 
 

@@ -20,8 +20,9 @@ module.exports = {
         
             return message.channel.send('zmienilem')
         
-        } else {
-            return message.channel.send('zle podales')
+        }
+        else {
+            return message.channel.send("**Streaming\nListening\nWatching\nCompeting\nReset**");
         }
         //here you tell the bot what the activity is
             args.shift()

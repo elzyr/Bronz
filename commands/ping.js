@@ -4,7 +4,6 @@ module.exports = {
     permissions: ["ADMINISTRATOR",],
     description: "this is a ping command!",
     execute(message, args, cmd, client, Discord){
-        message.channel.send('przestań spamić :angry:');
-        console.log("ping command has been used");
+        message.channel.send(`🏓 Ping wynosi ${Date.now() - message.createdTimestamp}ms.\n Ping API to ${Math.round(client.ws.ping)}ms`);
     }
 }

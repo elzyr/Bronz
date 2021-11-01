@@ -6,7 +6,7 @@ module.exports = {
     description: "wyświetla wszystkie komendy",
     execute(message, args, cmd, client, Discord){
         const newEmbed = new Discord.MessageEmbed()
-        .setColor('#304281')
+        .setColor('RANDOM')
         .setTitle("Komendy")
         .setDescription('Takie komendy są w tym momencie')
         .addFields(

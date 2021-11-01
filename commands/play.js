@@ -10,7 +10,7 @@ module.exports = {
     aliases: ['skip', 'stop', 'volume', 'queue'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
     cooldown: 0,
     permissions: [],
-    description: 'Advanced music bot',
+    description: 'bocik',
     async execute(message,args, cmd, client, Discord){
 
 
@@ -18,8 +18,8 @@ module.exports = {
         const voice_channel = message.member.voice.channel;
         if (!voice_channel) return message.channel.send(':x: Musisz być na kanale, żeby korzystać z bota! :x:');
         const permissions = voice_channel.permissionsFor(message.client.user);
-        if (!permissions.has('CONNECT')) return message.channel.send('Brak permisji');
-        if (!permissions.has('SPEAK')) return message.channel.send(':x: Brak permisji :x:');
+        if (!permissions.has('CONNECT')) return message.channel.send(':x: nie moge **połączyć się** z kanałem! :x:');
+        if (!permissions.has('SPEAK')) return message.channel.send(':x: I cant **speak** :x:');
 
         //This is our server queue. We are getting this server queue from the global queue.
         const server_queue = queue.get(message.guild.id);
@@ -107,7 +107,7 @@ const video_player = async (guild, song) => {
 const skip_song = (message, server_queue) => {
     if (!message.member.voice.channel) return message.channel.send('M');
     if(!server_queue){
-        return message.channel.send(`nic nie ma w que 😔`);
+        return message.channel.send(`:x: Nie ma co skipować 😔:x:`);
     }
     server_queue.connection.dispatcher.end();
 }
@@ -115,7 +115,7 @@ const skip_song = (message, server_queue) => {
 const stop_song = (message, server_queue) => {
     if (!message.member.voice.channel) return message.channel.send(':x: Musisz być na kanale, żeby korzystać z bota! :x:');
     if(!server_queue){
-        return message.channel.send('w tym momencie nic nie leci!');
+        return message.channel.send(':x: w tym momencie nic nie leci! :x:');
     }else{
         server_queue.songs = [];
         server_queue.connection.dispatcher.end();
@@ -126,12 +126,12 @@ const stop_song = (message, server_queue) => {
 const set_volume = async (message,server_queue,args, cmd, client, Discord) => {
 
     if(!message.guild.member(message.author).hasPermission('ADMINISTRATOR')) {
-        return message.channel.send(":x: tylko osoba Grande Bronze może to zrobić :x:") 
+        return message.channel.send(":x: tylko administrator może to zrobić :x:") 
       }
       
     if (!args.length) return message.channel.send('aktualnie głośność wynosi ' + process.env.VOLUME *100 + '%');
     if (Number.isNaN(+args[0])) return message.channel.send(':x: to musi być liczba :x:');
-    if (!server_queue) return message.channel.send('`nie mozna zmieniac glosnosci jesli bot nie gra bo crashuje`');
+    if (!server_queue) return message.channel.send('nie mozna zmieniac glosnosci jesli bot nie gra');
     if (args[0]>100 || args[0]<0) return message.channel.send('poprostu nie.');
     if (!message.member.voice.channel) return message.channel.send('Musisz być na kanale!');
 
@@ -143,8 +143,8 @@ const set_volume = async (message,server_queue,args, cmd, client, Discord) => {
 
 const show_queue = (message,server_queue,args, cmd, client, Discord) => {
     const serverQueue = queue.get(message.guild.id);
-    if (!serverQueue || serverQueue.songs.length == 0) return message.channel.send("nic nie gra")
-    if (serverQueue.songs.length == 1) return message.channel.send("nic nie ma w queue")
+    if (!serverQueue || serverQueue.songs.length == 0) return message.channel.send(":x: nic nie gra :x:")
+    if (serverQueue.songs.length == 1) return message.channel.send(":x: nic nie ma w queue :x:")
     return message.channel.send([
         "__**queue:**__",
         serverQueue.songs.slice(1).map(song => `- ${song.title}`).join("\n")

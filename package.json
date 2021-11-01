@@ -1,6 +1,6 @@
 {
-  "name": "mentity",
-  "version": "0.0.1",
+  "name": "Bronz",
+  "version": "0.5.4",
   "description": "Discord bot made by Elzyr#5675 for fun and for the bois",
   "main": "index.js",
   "scripts": {

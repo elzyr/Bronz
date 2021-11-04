@@ -19,7 +19,7 @@ module.exports = {
             {name:'!skip', value:'skipuje aktualna piosenke'},
             {name:'!stop', value:'wyrzuca bota z kanału'},
             {name:'!queue', value:'pokazuje kolejke'},
-            {name:'!volume', value:'zmienia glośność (trzeba być Grande Bronze)'}
+            {name:'!volume', value:'zmienia glośność (trzeba być Administratorem)'}
 
 
 

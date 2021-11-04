@@ -147,7 +147,8 @@ const show_queue = (message,server_queue,args, cmd, client, Discord) => {
     if (serverQueue.songs.length == 1) return message.channel.send(":x: nic nie ma w queue :x:")
     return message.channel.send([
         "__**queue:**__",
+        `**${serverQueue.songs[0].title}**`,
         serverQueue.songs.slice(1).map(song => `- ${song.title}`).join("\n")
-      ].join("\n\n"));
+      ].join("\n"))
     }
 

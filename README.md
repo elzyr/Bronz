@@ -2,6 +2,8 @@ Bot ligi bronzów
 
 updaty
 
+0.5.6
+ 
         - Muzyka działa
         - Bot nie resetuje sie już kiedy nie rozumie komendy
         - Zmiana odpowiedzi bota, bo sam niekiedy nie rozumialem o co mu chodzi XDD

@@ -9,8 +9,8 @@ module.exports = {
         - Bot nie resetuje sie już kiedy nie rozumie komendy\n
         - Zmiana odpowiedzi bota, bo sam niekiedy nie rozumialem o co mu chodzi XDD\n
         - Mała zmiana wyświetlania queue /04.11.2021\n
-        - W KONCU DZIALA QUEUE\n\n
-        - Zmiana wyświetlania wersji
+        - W KONCU DZIALA QUEUE\n
+        - Zmiana wyświetlania wersji /26.11.2021\n\n
         Ostatni Patch: 04.11.2021\n
         jesli znajdziesz jakis blad napisz do Elzyr#0001\n\n
         znane błędy \n

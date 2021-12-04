@@ -19,7 +19,8 @@ module.exports = {
             {name:'!skip', value:'skipuje aktualna piosenke'},
             {name:'!stop', value:'wyrzuca bota z kanału'},
             {name:'!queue', value:'pokazuje kolejke'},
-            {name:'!volume', value:'zmienia glośność (trzeba być Administratorem)'}
+            {name:'!volume', value:'zmienia glośność (trzeba być Administratorem)'},
+            {name:'!now', value:'wyświetla aktualnie graną piosenke'}
 
 
 

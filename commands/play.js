@@ -7,7 +7,7 @@ const queue = new Map();
 
 module.exports = {
     name: 'play',
-    aliases: ['skip', 'stop', 'volume', 'queue'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
+    aliases: ['skip', 'stop', 'volume', 'queue', 'now'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
     cooldown: 0,
     permissions: [],
     description: 'bocik',
@@ -80,6 +80,7 @@ module.exports = {
 
         else if(cmd === 'skip') skip_song(message, server_queue);
         else if(cmd === 'queue') show_queue(message,server_queue,args, cmd, client, Discord);
+        else if(cmd === 'now') current_song(message,server_queue,args, cmd, client, Discord);
         else if(cmd === 'stop') stop_song(message, server_queue);
         else if(cmd === 'volume') set_volume(message,server_queue,args, cmd, client, Discord);
     }
@@ -151,4 +152,13 @@ const show_queue = (message,server_queue,args, cmd, client, Discord) => {
         serverQueue.songs.slice(1).map(song => `- ${song.title}`).join("\n")
       ].join("\n"))
     }
+    const current_song = (message,server_queue,args, cmd, client, Discord) => {
+        const serverQueue = queue.get(message.guild.id);
+        if (!serverQueue || serverQueue.songs.length == 0) return message.channel.send(":x: nic nie gra :x:")
+        if (serverQueue.songs.length == 1) return message.channel.send(":x: nic nie ma w queue :x:")
+        return message.channel.send([
+            "Teraz leci: ",
+            `**${serverQueue.songs[0].title}**`
+          ])
+        }
 

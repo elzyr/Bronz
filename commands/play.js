@@ -152,6 +152,7 @@ const show_queue = (message,server_queue,args, cmd, client, Discord) => {
         serverQueue.songs.slice(1).map(song => `- ${song.title}`).join("\n")
       ].join("\n"))
     }
+    
     const current_song = (message,server_queue,args, cmd, client, Discord) => {
         const serverQueue = queue.get(message.guild.id);
         if (!serverQueue || serverQueue.songs.length == 0) return message.channel.send(":x: nic nie gra :x:")

@@ -7,7 +7,7 @@ const queue = new Map();
 
 module.exports = {
     name: 'play',
-    aliases: ['skip', 'stop', 'volume', 'queue', 'now'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
+    aliases: ['skip', 'stop', 'volume', 'queue', 'now', 'fix'], //We are using aliases to run the skip and stop command follow this tutorial if lost: https://www.youtube.com/watch?v=QBUJ3cdofqc
     cooldown: 0,
     permissions: [],
     description: 'bocik',
@@ -83,6 +83,7 @@ module.exports = {
         else if(cmd === 'now') current_song(message,server_queue,args, cmd, client, Discord);
         else if(cmd === 'stop') stop_song(message, server_queue);
         else if(cmd === 'volume') set_volume(message,server_queue,args, cmd, client, Discord);
+        else if(cmd === 'fix') fix_music(message,server_queue,args, cmd, client, Discord);
     }
     
 }
@@ -111,6 +112,14 @@ const skip_song = (message, server_queue) => {
         return message.channel.send(`:x: Nie ma co skipować 😔:x:`);
     }
     server_queue.connection.dispatcher.end();
+}
+
+const fix_music = (message,server_queue,guild,) => {
+    queue.delete(guild.id);
+    server_queue.songs = [];
+    server_queue.connection.dispatcher.end();
+    return message.channel.send(`:x: Naprawione **beta**:x:`);
+
 }
 
 const stop_song = (message, server_queue) => {

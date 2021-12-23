@@ -1,15 +1,15 @@
 const got = require('got');
 
 module.exports = {
-    name: 'smem',
-    aliases: ['smeme', 'smemes'],
+    name: 'dankmeme',
+    aliases: ['dankmeme', 'dmeme','dm'],
     cooldown: 1,
     permissions: [],
     description: "dej mema",
     execute(message, args, cmd, client, Discord){
         message.channel.send('oto twój mem');
         const embed = new Discord.MessageEmbed()
-        got('https://www.reddit.com/r/surrealmemes/random/.json').then(response => {
+        got('https://www.reddit.com/r/dankmemes/random/.json').then(response => {
             let content = JSON.parse(response.body);
             let permalink = content[0].data.children[0].data.permalink;
             let memeUrl = `https://reddit.com${permalink}`;

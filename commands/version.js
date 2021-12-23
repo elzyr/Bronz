@@ -12,12 +12,11 @@ module.exports = {
         - W KONCU DZIALA QUEUE
         - Zmiana wyświetlania wersji /26.11.2021
         - Dodanie komendy !now /04.12.2021
+        - Dodanie komendy !fix /23.12.2021
 
-        Ostatni Patch: 04.12.2021
+        Ostatni Patch: 23.12.2021
         jesli znajdziesz jakis blad napisz do Elzyr#0001
-
-        znane błędy
-        - Jeśli bot się zepsuje (czasami są bugi z muzyką) to musze go manualnie zrestartować na hostingu`);
+`);
         console.log("ping command has been used");
     }
 }

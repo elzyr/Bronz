@@ -15,7 +15,7 @@
   "author": "Elzyr#5675",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
+    "@discordjs/opus": "^0.5.3",
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^4.3.0",
@@ -23,6 +23,6 @@
     "got": "^11.8.2",
     "images-scraper": "^6.3.0",
     "yt-search": "^2.10.2",
-    "ytdl-core": "^4.9.1"
+    "ytdl-core": "^4.9.2"
   }
 }

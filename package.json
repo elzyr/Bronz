@@ -1,6 +1,6 @@
 {
   "name": "Bronz",
-  "version": "0.5.4",
+  "version": "0.6",
   "description": "Discord bot made by Elzyr#5675 for fun and for the bois",
   "main": "index.js",
   "scripts": {

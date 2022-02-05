@@ -29,7 +29,7 @@ if (!args[0]) return message.channel.send(`${message.author} nic nie znalazlem �
 
         const maxTracks = res.tracks.slice(0, 10);
 
-        embed.setDescription(`${maxTracks.map((track, i) => `**${i + 1}**. ${track.title} | ${track.author}`).join('\n')}\n\n**BETA MOZE NIE DZIALAC** WYBIERZ OD **1** DO **${maxTracks.length}** LUB WPISZ **cancel** ⬇️`);
+        embed.setDescription(`${maxTracks.map((track, i) => `**${i + 1}**. ${track.title} | ${track.author}`).join('\n')}\n\n**BETA MOZE NIE DZIALAC** WYBIERZ OD **1** DO **${maxTracks.length}** LUB WPISZ **!cancel** ⬇️`);
 
         embed.setTimestamp();
         embed.setFooter('do dupy ten discord.js 13 :(', message.author.avatarURL({ dynamic: true }));
@@ -43,11 +43,11 @@ if (!args[0]) return message.channel.send(`${message.author} nic nie znalazlem �
         });
 
        collector.on('collect', async (query) => {
-            if (query.content.toLowerCase() === 'cancel') return message.channel.send(`po co mi gitare zawracasz?`) && collector.stop();
+            if (query.content.toLowerCase() === '!cancel') return message.channel.send(`po co mi gitare zawracasz?`) && collector.stop();
 
             const value = parseInt(query.content);
 
-            if (!value || value <= 0 || value > maxTracks.length) return message.channel.send(`czego nie rozumiesz \n WYBIERZ OD **1** DO **${maxTracks.length}** LUB WPISZ **cancel** ⬇️`);
+            if (!value || value <= 0 || value > maxTracks.length) return message.channel.send(`czego nie rozumiesz \n WYBIERZ OD **1** DO **${maxTracks.length}** LUB WPISZ **!cancel** ⬇️`);
 
             collector.stop();
 

@@ -14,8 +14,8 @@ module.exports = {
         embed.setThumbnail(client.user.displayAvatarURL())
         const commands = client.commands.filter(x => x.showHelp !== false);
 
-        embed.setDescription('xd') ;
-        embed.addField(`dostępne - ${commands.size} komendy:`, commands.map(x => `\`${x.name}${x.aliases[0] ? ` (${x.aliases.map(y => y).join(', ')})\`` : '\`'}`).join(' \n '));
+        embed.setDescription('KOMENDY') ;
+        embed.addField(`dostępne - ${commands.size} komend`, commands.map(x => `\`!${x.name}${x.aliases[0] ? ` (${x.aliases.map(y => y).join('\n')})\`` : '\`'}`).join(' \n'));
 
         embed.setTimestamp();
         embed.setFooter('Elzyr#0001', message.author.avatarURL({ dynamic: true }));

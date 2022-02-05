@@ -22,7 +22,7 @@ module.exports = (client, message) => {
 
     if (cmd && cmd.voiceChannel) {
         if (!message.member.voice.channel) return message.channel.send(`${message.author}, nie ma cie na kanale ❌`);
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.channel.send(`${message.author}, You are not on the same audio channel as me. ❌`);
+        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return message.channel.send(`${message.author} musisz byc na tym samym kanale co ja ❌`);
     }
 
     if (cmd) cmd.execute(client, message, args);

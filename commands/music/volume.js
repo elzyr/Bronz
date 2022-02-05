@@ -21,6 +21,6 @@ module.exports = {
 
         const success = queue.setVolume(vol);
 
-        return message.channel.send(success ? `glosnosc: **%${vol}**/**${maxVol}** 🔊` : `${message.author}blad D: ❌`) ;
+        return message.channel.send(success ? `glosnosc: **${vol}**/**${maxVol}%** 🔊` : `${message.author}blad D: ❌`) ;
     },
 };

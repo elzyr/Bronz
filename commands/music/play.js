@@ -27,7 +27,7 @@ if (!args[0]) return message.channel.send(`${message.author}, co ja mam kurwa zg
             return message.channel.send(`${message.author}nie moge dolaczyc ❌`);
         }
 
-        await message.channel.send(`**BETA** \N playlista ${res.playlist ? 'Your Playlist' : 'Your Track'} kurde czekaj laduje... 🎧`);
+        await message.channel.send(`**BETA** \n puszczam ${res.playlist ? 'playliste' : 'piosenke'} kurde czekaj laduje... 🎧`);
 
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
 

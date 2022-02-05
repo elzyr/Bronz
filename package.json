@@ -1,28 +1,20 @@
 {
-  "name": "Bronz",
-  "version": "0.6",
-  "description": "Discord bot made by Elzyr#5675 for fun and for the bois",
-  "main": "index.js",
+  "name": "music-bot",
+  "main": "main.js",
+  "author": "Umut Bayraktar",
+  "description": "Discord.js V13 Compatible Umut Bayraktar Youtube Private Music Bot Codes for Shared on GitHub!",
   "scripts": {
-    "dev": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node main.js"
   },
-  "keywords": [
-    "Discord",
-    "Bot"
-  ],
-  "author": "Elzyr#5675",
-  "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.5.3",
-    "discord.js": "^12.5.3",
-    "dotenv": "^8.2.0",
-    "ffmpeg-static": "^4.3.0",
-    "fs": "0.0.1-security",
-    "got": "^11.8.2",
-    "images-scraper": "^6.3.0",
-    "yt-search": "^2.10.2",
-    "ytdl-core": "^4.10.0"
+    "discord-player": "^5.2.2",
+    "discord.js": "^13.4.0",
+    "express": "^4.17.2",
+    "ffmpeg-static": "^4.4.0",
+    "ms": "^3.0.0-canary.1",
+    "opusscript": "^0.0.8"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }

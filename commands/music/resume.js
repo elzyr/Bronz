@@ -7,10 +7,10 @@ module.exports = {
     execute(client, message) {
         const queue = client.player.getQueue(message.guild.id);
 
-        if (!queue) return message.channel.send(`${message.author} nic nie gra kasztaniarzu ❌`);
+        if (!queue) return message.channel.send(`❌Nic nie gra❌`);
 
         const success = queue.setPaused(false);
 
-        return message.channel.send(success ? `**${queue.current.title}**, no i pyk znowu gra` : `${message.author} cos nie styka w resume ❌`);
+        return message.channel.send(success ? `ah shit, here we go again` : `${message.author} cos nie styka w resume ❌`);
     },
 };

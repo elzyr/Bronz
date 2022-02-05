@@ -7,14 +7,14 @@ module.exports = {
     voiceChannel: true,
 
     async execute(client, message, args) {
-if (!args[0]) return message.channel.send(`${message.author}, co ja mam kurwa zgadnac? ❌`);
+if (!args[0]) return message.channel.send(`❌Co ja mam kurwa zgadywać?❌`);
 
         const res = await client.player.search(args.join(' '), {
             requestedBy: message.member,
             searchEngine: QueryType.AUTO
         });
 
-        if (!res || !res.tracks.length) return message.channel.send(`${message.author} troche jasniej pls ❌`);
+        if (!res || !res.tracks.length) return message.channel.send(`❌Nic nie znalazłem❌`);
 
         const queue = await client.player.createQueue(message.guild, {
             metadata: message.channel
@@ -24,10 +24,10 @@ if (!args[0]) return message.channel.send(`${message.author}, co ja mam kurwa zg
             if (!queue.connection) await queue.connect(message.member.voice.channel);
         } catch {
             await client.player.deleteQueue(message.guild.id);
-            return message.channel.send(`${message.author}nie moge dolaczyc ❌`);
+            return message.channel.send(`❌Cie moge dolaczyc❌`);
         }
 
-        await message.channel.send(`**BETA** \n puszczam ${res.playlist ? 'playliste' : 'piosenke'} kurde czekaj laduje... 🎧`);
+        await message.channel.send(`Puszczam ${res.playlist ? 'playliste' : 'piosenke'} ładuje... 🎧`);
 
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
 

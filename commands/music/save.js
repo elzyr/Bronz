@@ -7,10 +7,10 @@ module.exports = {
     async execute(client, message) {
         const queue = client.player.getQueue(message.guild.id);
 
-  if (!queue || !queue.playing) return message.channel.send(`${message.author} nic nie gra ❌`);
+  if (!queue || !queue.playing) return message.channel.send(`❌Nic nie gra❌`);
 
-        message.author.send(`myk zapisuje **${queue.current.title}** | ${queue.current.author} ✅`) .then(() => {
-            message.channel.send(`wyslalem ci w dmach ✅`);
+        message.author.send(`**${queue.current.title}** od ${queue.current.author} `) .then(() => {
+            message.channel.send(`wyslalem ci w dm ✅`);
         }).catch(error => {
             message.channel.send(`${message.author} nie moge ci wyslac D: ❌`);
         });

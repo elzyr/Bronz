@@ -7,7 +7,7 @@ module.exports = {
     execute(client, message) {
         const queue = client.player.getQueue(message.guild.id);
 
-        if (!queue || !queue.playing) return message.channel.send(`${message.author} nie`);
+        if (!queue || !queue.playing) return message.channel.send(`❌Nie ma czego skipowac❌`);
 
         queue.destroy();
 

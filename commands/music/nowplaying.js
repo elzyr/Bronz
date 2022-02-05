@@ -9,7 +9,7 @@ module.exports = {
     execute(client, message) {
         const queue = client.player.getQueue(message.guild.id);
 
- if (!queue || !queue.playing) return message.channel.send(`${message.author}, nic nie gra ❌`);
+ if (!queue || !queue.playing) return message.channel.send(`❌Nic nie gra❌`);
 
         const track = queue.current;
 
@@ -19,12 +19,12 @@ module.exports = {
         embed.setThumbnail(track.thumbnail);
         embed.setTitle(track.title)
 
-        const methods = ['wylaczony', 'muzyczka', 'queue'];
+        const methods = ['wylaczony', 'track', 'queue'];
 
         const timestamp = queue.getPlayerTimestamp();
 const trackDuration = timestamp.progress == 'Forever' ? 'live' : track.duration;
 
-        embed.setDescription(`Audio **%${queue.volume}**\nczas **${trackDuration}**\nLoop **${methods[queue.repeatMode]}**\n${track. requestedBy}`);
+        embed.setDescription(`Audio **${queue.volume}%**\nczas **${trackDuration}**\nLoop **${methods[queue.repeatMode]}**\n${track. requestedBy}`);
 
         embed.setTimestamp();
         embed.setFooter('beta nowego bota', message.author.avatarURL({ dynamic: true }));

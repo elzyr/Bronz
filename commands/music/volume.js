@@ -9,7 +9,7 @@ module.exports = {
     execute(client, message, args) {
         const queue = client.player.getQueue(message.guild.id);
 
-       if (!queue || !queue.playing) return message.channel.send(`${message.author} nic nie gra ❌`);
+       if (!queue || !queue.playing) return message.channel.send(`❌Nic nie gra❌`);
 
         const vol = parseInt(args[0]);
 

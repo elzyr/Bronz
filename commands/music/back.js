@@ -7,12 +7,12 @@ module.exports = {
     async execute(client, message) {
         const queue = client.player.getQueue(message.guild.id);
 
-        if (!queue || !queue.playing) return message.channel.send(`${message.author}, nic nie gra przeciez ❌`);
+        if (!queue || !queue.playing) return message.channel.send(`❌Nic nie gra❌`);
 
-        if (!queue.previousTracks[1]) return message.channel.send(`${message.author}, nie mam sie do czego cofnac :< ❌`);
+        if (!queue.previousTracks[1]) return message.channel.send(`❌Nie mam sie do czego cofnac❌`);
 
         await queue.back();
 
-        message.channel.send(`cofam czas ✅`);
+        message.channel.send(`✅Cofam czas✅`);
     },
 };

@@ -29,10 +29,10 @@ if (!args[0]) return message.channel.send(`${message.author} nic nie znalazlem �
 
         const maxTracks = res.tracks.slice(0, 10);
 
-        embed.setDescription(`${maxTracks.map((track, i) => `**${i + 1}**. ${track.title} | ${track.author}`).join('\n')}\n\n**BETA MOZE NIE DZIALAC** WYBIERZ OD **1** DO **${maxTracks.length}** LUB WPISZ **!cancel** ⬇️`);
+        embed.setDescription(`${maxTracks.map((track, i) => `**${i + 1}**. ${track.title} | ${track.author}`).join('\n')}\n\nWYBIERZ OD **1** DO **${maxTracks.length}** LUB WPISZ **!cancel** ⬇️`);
 
         embed.setTimestamp();
-        embed.setFooter('do dupy ten discord.js 13 :(', message.author.avatarURL({ dynamic: true }));
+        embed.setFooter('Elzyr#0001', message.author.avatarURL({ dynamic: true }));
 
         message.channel.send({ embeds: [embed] });
 
@@ -58,7 +58,7 @@ if (!args[0]) return message.channel.send(`${message.author} nic nie znalazlem �
                 return message.channel.send(`${message.author} nie moge sie polaczyc z kanalem ❌`);
             }
 
-            await message.channel.send(`laduje te gowno co pusciles 🎧`);
+            await message.channel.send(`laduje te gowno co wybrałeś 🎧`);
 
             queue.addTrack(res.tracks[Number(query.content)-1]);
             if (!queue.playing) await queue.play();

@@ -15,11 +15,11 @@ module.exports = {
 
         const embed = new MessageEmbed();
 
-        embed.setColor('RED');
+        embed.setColor('RANDOM');
         embed.setThumbnail(track.thumbnail);
         embed.setTitle(track.title)
 
-        const methods = ['disabled', 'track', 'queue'];
+        const methods = ['wylaczony', 'muzyczka', 'queue'];
 
         const timestamp = queue.getPlayerTimestamp();
 const trackDuration = timestamp.progress == 'Forever' ? 'live' : track.duration;

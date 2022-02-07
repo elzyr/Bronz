@@ -45,7 +45,6 @@ player.on('connectionError', (queue, error) => {
 
 player.on('trackStart', (queue, track) => {
     if (!client.config.opt.loopMessage && queue.repeatMode !== 0) return;
-    queue.metadata.send(`🎵 teraz leci: **${track.title}** 🎧`);
 });
 
 player.on('trackAdd', (queue, track) => {
@@ -61,7 +60,6 @@ player.on('channelEmpty', (queue) => {
 });
 
 player.on('queueEnd', (queue) => {
-    queue.metadata.send('TEST END QUEUE DLA DEBILI ✅');
 });
 
 
@@ -69,6 +67,4 @@ player.on('queueEnd', (queue) => {
 if(client.config.TOKEN){
 client.login(client.config.TOKEN).catch(e => {
 })
-} else {
-console.log("Please Write Your Bot Token Opposite The Token In The config.js File In Your Project!")
 }

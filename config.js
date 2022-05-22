@@ -1,7 +1,7 @@
 module.exports = {
         TOKEN: 'ODIxNjQxMTY1OTc1NTg0ODM5.YFGq9w.SO2hQA4lbCS0X8oCCSJfWbfl2lA', //your discord bot token
         px: '!',
-        watching: 'your mom',
+        watching: 'ayy',
 
     opt: {
         DJ: {

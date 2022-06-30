@@ -18,7 +18,7 @@ if (!args[0]) return message.channel.send(`❌Co ja mam kurwa zgadywać?❌`);
 
         const queue = await client.player.createQueue(message.guild, {
             metadata: message.channel
-        });npm outdated
+        });
 
         try {
             if (!queue.connection) await queue.connect(message.member.voice.channel);
